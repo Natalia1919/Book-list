@@ -8,7 +8,7 @@ const Header = () => {
   const { mode, handleTheme } = useContext(ModeContext);
 
   return (
-    <AppBar position="static" color="primary">
+    <AppBar className="header" position="static" color="primary">
       <Container>
         <Toolbar className="header__inner">
           <Typography

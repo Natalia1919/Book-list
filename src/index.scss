@@ -54,12 +54,25 @@ a {
   color: inherit;
 }
 
+.wrapper {
+  min-height: 100vh;
+}
+
 .header {
+  margin-bottom: 35px;
   &__logo {
     font-weight: 700 !important;
     font-style: italic !important;
     font-size: 28px !important;
     letter-spacing: 0.05em !important;
     text-transform: capitalize !important;
+  }
+}
+
+.book {
+  &__title {
+    font-weight: 600 !important;
+    text-align: center !important;
+    margin-bottom: 15px !important;
   }
 }

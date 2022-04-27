@@ -1,31 +1,42 @@
+import { purple, indigo, grey } from "@mui/material/colors";
+
 export const getDesignTokens = (mode) => ({
   palette: {
     mode,
     ...(mode === "light"
       ? {
           primary: {
-            main: "#9229c7",
+            main: purple[200],
+          },
+          secondary: {
+            main: purple[400],
           },
           text: {
-            primary: "#000000",
-            secondary: "#4b4b4b",
+            primary: grey[900],
+            secondary: grey[700],
           },
           background: {
-            default: "#d4a4d4",
+            default: purple[100],
+            paper: purple[50],
+            card: purple[50],
           },
         }
       : {
           primary: {
-            main: "#590d72",
+            main: indigo[600],
+          },
+          secondary: {
+            main: indigo[900],
           },
 
           text: {
-            primary: "#bfbfbf",
-            secondary: "#848484",
+            primary: grey[100],
+            secondary: grey[200],
           },
-
           background: {
-            default: "#8a489e !important",
+            default: indigo[300],
+            paper: indigo[500],
+            card: indigo[300],
           },
         }),
   },
