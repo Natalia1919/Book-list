@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
+
 import { AppBar, Toolbar, Typography, Switch, Container } from "@mui/material";
+import { ModeNightRounded, WbSunnyRounded } from "@mui/icons-material";
 
 import BookContext from "../context/BookContext";
-import { ModeNightRounded, WbSunnyRounded } from "@mui/icons-material";
 
 const Header = () => {
   const { mode, handleTheme } = useContext(BookContext);

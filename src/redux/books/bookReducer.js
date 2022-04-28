@@ -1,4 +1,10 @@
-import { ADD_BOOK, REMOVE_BOOK, EDIT_BOOK, IS_READ } from "./bookTypes";
+import {
+  ADD_BOOK,
+  REMOVE_BOOK,
+  EDIT_BOOK,
+  IS_READ,
+  REMOVE_ALL,
+} from "./bookTypes";
 import bookList from "../../data/book-list";
 
 const initialState = {
@@ -30,6 +36,11 @@ const bookReducer = (state = initialState, action) => {
         bookItems: state.bookItems.map((book) =>
           book.id === action.payload.id ? action.payload : book
         ),
+      };
+    case REMOVE_ALL:
+      return {
+        ...state,
+        bookItems: [],
       };
 
     default:

@@ -1,4 +1,10 @@
-import { ADD_BOOK, REMOVE_BOOK, EDIT_BOOK, IS_READ } from "./bookTypes";
+import {
+  ADD_BOOK,
+  REMOVE_BOOK,
+  EDIT_BOOK,
+  IS_READ,
+  REMOVE_ALL,
+} from "./bookTypes";
 
 export const addBook = (payload) => ({
   type: ADD_BOOK,
@@ -18,4 +24,8 @@ export const editBook = (payload) => ({
 export const toggleIsRead = (payload) => ({
   type: IS_READ,
   payload,
+});
+
+export const removeAll = () => ({
+  type: REMOVE_ALL,
 });

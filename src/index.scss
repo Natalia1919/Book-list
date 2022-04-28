@@ -90,6 +90,7 @@ a {
       margin-bottom: 15px;
     }
   }
+
   &__item-title {
     text-decoration: line-through !important;
   }
@@ -118,4 +119,31 @@ a {
   transform: translate(-50%, -50%);
   width: 800px;
   padding: 40px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+
+  &__result {
+    font-weight: 700px;
+    font-size: 22px;
+    line-height: 34px;
+    text-transform: capitalize;
+    & > span {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  &__read {
+    color: green;
+  }
+
+  &__notread {
+    color: red;
+  }
 }

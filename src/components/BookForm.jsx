@@ -7,7 +7,6 @@ import { Box } from "@mui/system";
 
 import { addBook } from "../redux/books/bookActions";
 import { capitalizeFirstLet, capitalize } from "../helpers/string";
-
 import { bookSchema } from "../helpers/bookSchema";
 
 import MyInput from "./elements/MyInput";

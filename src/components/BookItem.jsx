@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
 
 import { Checkbox, IconButton, Typography, Modal } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
-
-import { useDispatch } from "react-redux";
 
 import { removeBook, toggleIsRead } from "../redux/books/bookActions";
 import BookContext from "../context/BookContext";
