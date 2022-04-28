@@ -1,4 +1,4 @@
-import { purple, indigo, grey } from "@mui/material/colors";
+import { purple, indigo, grey, blueGrey } from "@mui/material/colors";
 
 export const getDesignTokens = (mode) => ({
   palette: {
@@ -23,10 +23,10 @@ export const getDesignTokens = (mode) => ({
         }
       : {
           primary: {
-            main: indigo[600],
+            main: indigo[900],
           },
           secondary: {
-            main: indigo[900],
+            main: blueGrey[900],
           },
 
           text: {
@@ -35,8 +35,7 @@ export const getDesignTokens = (mode) => ({
           },
           background: {
             default: indigo[300],
-            paper: indigo[500],
-            card: indigo[300],
+            paper: indigo[600],
           },
         }),
   },

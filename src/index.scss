@@ -29,6 +29,7 @@ figcaption,
 blockquote,
 dl,
 dd {
+  padding: 0;
   margin: 0;
   font-size: inherit;
 }
@@ -75,4 +76,42 @@ a {
     text-align: center !important;
     margin-bottom: 15px !important;
   }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__modal {
+    background-color: rgba(0, 0, 0, 0.93) !important;
+  }
+
+  &__btns {
+    & > button {
+      margin: 15px 5px 0;
+    }
+  }
+}
+
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  padding: 40px;
 }

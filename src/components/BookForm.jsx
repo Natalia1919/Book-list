@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Box } from "@mui/system";
 
+import ModeContext from "../context/ThemeContext";
 import { bookSchema } from "../helpers/bookSchema";
 
 import MyInput from "./elements/MyInput";
 import MyButton from "./elements/MyButton";
 
 const BookForm = () => {
+  const { isModal, handleModal } = useContext(ModeContext);
   const {
     register,
     handleSubmit,
@@ -44,11 +46,23 @@ const BookForm = () => {
           errorText={errors?.author?.message}
         />
       </Box>
-      <Box>
-        <MyButton type="submit" color="secondary">
-          Add a book
-        </MyButton>
-      </Box>
+
+      {!isModal ? (
+        <Box className="book__btns">
+          <MyButton type="submit" color="secondary">
+            Add book
+          </MyButton>
+        </Box>
+      ) : (
+        <Box className="book__btns">
+          <MyButton type="submit" color="secondary">
+            Edit book
+          </MyButton>
+          <MyButton type="button" color="text" onClick={handleModal}>
+            Cancel
+          </MyButton>
+        </Box>
+      )}
     </form>
   );
 };
