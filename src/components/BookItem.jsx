@@ -1,34 +1,64 @@
 import React, { useContext } from "react";
 
-import { Checkbox, IconButton, Typography } from "@mui/material";
+import { Checkbox, IconButton, Typography, Modal } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 
-import ModeContext from "../context/ThemeContext";
+import { useDispatch } from "react-redux";
 
-const BookItem = ({ id, title, author, isRead }) => {
-  const { handleModal } = useContext(ModeContext);
+import { removeBook, toggleIsRead } from "../redux/books/bookActions";
+import BookContext from "../context/BookContext";
+
+import BookEdit from "./BookEdit";
+
+const BookItem = ({ book }) => {
+  const { id, title, author, isRead } = book;
+  const { isModal, handleModal, startEditBook } = useContext(BookContext);
+  const dispatch = useDispatch();
+
   return (
-    <li className="book__item">
-      <Checkbox
-        checked={isRead}
-        // onChange={handleChange}
-        inputProps={{ "aria-label": "controlled" }}
-        sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-        color="secondary"
-      />
-      <div className="book__content">
-        <Typography variant="h4">{title}</Typography>
-        <Typography variant="h5">{author}</Typography>
-      </div>
-      <div>
-        <IconButton onClick={handleModal}>
-          <Edit sx={{ fontSize: 28 }} color="secondary" />
-        </IconButton>
-        <IconButton>
-          <Delete sx={{ fontSize: 28 }} color="secondary" />
-        </IconButton>
-      </div>
-    </li>
+    <>
+      <li className="book__item">
+        <Checkbox
+          checked={isRead}
+          onChange={() => {
+            dispatch(toggleIsRead(id));
+          }}
+          inputProps={{ "aria-label": "controlled" }}
+          sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+          color="secondary"
+        />
+        <div className="book__content">
+          <Typography
+            className={`${isRead && "book__item-title"}`}
+            variant="h4"
+          >
+            {title}
+          </Typography>
+          <Typography variant="h5">{author}</Typography>
+        </div>
+        <div>
+          <IconButton onClick={() => startEditBook(book)}>
+            <Edit sx={{ fontSize: 28 }} color="secondary" />
+          </IconButton>
+          <IconButton
+            onClick={() => {
+              dispatch(removeBook(id));
+            }}
+          >
+            <Delete sx={{ fontSize: 28 }} color="secondary" />
+          </IconButton>
+        </div>
+      </li>
+      <Modal
+        className="book__modal"
+        open={isModal}
+        onClose={handleModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <BookEdit />
+      </Modal>
+    </>
   );
 };
 

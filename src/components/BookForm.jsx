@@ -1,17 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
 
 import { Box } from "@mui/system";
 
-import ModeContext from "../context/ThemeContext";
+import { addBook } from "../redux/books/bookActions";
+import { capitalizeFirstLet, capitalize } from "../helpers/string";
+
 import { bookSchema } from "../helpers/bookSchema";
 
 import MyInput from "./elements/MyInput";
 import MyButton from "./elements/MyButton";
 
 const BookForm = () => {
-  const { isModal, handleModal } = useContext(ModeContext);
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -23,9 +27,16 @@ const BookForm = () => {
   });
 
   const onSubmitBook = (data) => {
-    alert(JSON.stringify(data));
+    const newBook = {
+      id: Number(new Date()),
+      title: capitalizeFirstLet(data.title),
+      author: capitalize(data.author),
+      isRead: false,
+    };
+    dispatch(addBook(newBook));
     reset();
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmitBook)}>
       <Box mb={2}>
@@ -46,23 +57,11 @@ const BookForm = () => {
           errorText={errors?.author?.message}
         />
       </Box>
-
-      {!isModal ? (
-        <Box className="book__btns">
-          <MyButton type="submit" color="secondary">
-            Add book
-          </MyButton>
-        </Box>
-      ) : (
-        <Box className="book__btns">
-          <MyButton type="submit" color="secondary">
-            Edit book
-          </MyButton>
-          <MyButton type="button" color="text" onClick={handleModal}>
-            Cancel
-          </MyButton>
-        </Box>
-      )}
+      <Box className="book__btns">
+        <MyButton type="submit" color="secondary">
+          Add book
+        </MyButton>
+      </Box>
     </form>
   );
 };
